@@ -108,6 +108,12 @@ export default function SigninForm() {
               Create account
             </Link>
           </p>
+          <Link
+            href="/posts"
+            className="text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+          >
+            Browse public posts
+          </Link>
         </CardFooter>
       </form>
     </Card>

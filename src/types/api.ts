@@ -42,3 +42,7 @@ export type InterestGroup = {
   count: number;
   users: { _id: string; name: string; email: string }[];
 };
+
+export type FeedPost = Omit<Post, "author"> & {
+  author: { _id: string; name: string };
+};

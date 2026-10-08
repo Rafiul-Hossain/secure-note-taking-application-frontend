@@ -6,6 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import {
   FileText,
   FolderKanban,
+  Globe,
   Hash,
   Lock,
   LogOut,
@@ -24,8 +25,9 @@ export default function Navbar() {
     ? [
         { href: "/", label: "My Notes", icon: FileText },
         { href: `/posts/${user.id}`, label: "My Posts", icon: MessageSquareText },
+        { href: "/posts", label: "All Posts", icon: Globe },
       ]
-    : [];
+    : [{ href: "/posts", label: "All Posts", icon: Globe }];
 
   const adminLinks =
     user?.role === "admin"
@@ -37,7 +39,9 @@ export default function Navbar() {
       : [];
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === "/" || href === "/posts"
+      ? pathname === href
+      : pathname.startsWith(href);
 
   const initials = user?.name
     ? user.name
