@@ -20,7 +20,7 @@ import { useCreateUser, useUpdateUser } from "../_hooks/useUsers";
 type Props = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  user: User | null; // null = add, a user = edit
+  user: User | null;
 };
 
 const emptyForm = {
@@ -40,8 +40,6 @@ export default function UserFormDialog({ open, onOpenChange, user }: Props) {
   const isEdit = !!user;
   const isSelf = !!user && user._id === session?.user?.id;
   const saving = createUser.isPending || updateUser.isPending;
-
-  // fill the form when the dialog opens
   useEffect(() => {
     if (!open) return;
     setForm(
@@ -74,7 +72,6 @@ export default function UserFormDialog({ open, onOpenChange, user }: Props) {
       email: form.email,
       role: form.role,
       interests: parsedInterests,
-      // on edit, an empty password means "keep the current one"
       ...(form.password ? { password: form.password } : {}),
     };
 

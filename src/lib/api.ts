@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 type Options = {
   method?: "GET" | "POST" | "PUT" | "DELETE";
   body?: unknown;
-  auth?: boolean; // set false for public endpoints
+  auth?: boolean;
 };
 
 export async function api<T>(

@@ -13,8 +13,6 @@ type UserPosts = {
   user: { _id: string; name: string };
   posts: Post[];
 };
-
-// GET /posts/user/:userId?page=&limit=  (public, so no token is sent)
 export function useUserPosts(userId: string, page: number, limit: number) {
   return useQuery({
     queryKey: ["posts", userId, page, limit],
@@ -23,11 +21,9 @@ export function useUserPosts(userId: string, page: number, limit: number) {
         auth: false,
       }),
     placeholderData: keepPreviousData,
-    retry: false, // a 404 / invalid id should show immediately
+    retry: false,
   });
 }
-
-// POST /posts  (needs login)
 export function useCreatePost() {
   const queryClient = useQueryClient();
   return useMutation({

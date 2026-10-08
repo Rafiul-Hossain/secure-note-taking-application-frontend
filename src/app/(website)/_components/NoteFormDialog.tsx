@@ -20,7 +20,7 @@ import { useCreateNote, useUpdateNote } from "../_hooks/useNotes";
 type Props = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  note: Note | null; // null = create, a note = edit
+  note: Note | null;
 };
 
 export default function NoteFormDialog({ open, onOpenChange, note }: Props) {
@@ -31,8 +31,6 @@ export default function NoteFormDialog({ open, onOpenChange, note }: Props) {
 
   const isEdit = !!note;
   const saving = createNote.isPending || updateNote.isPending;
-
-  // fill the form when the dialog opens
   useEffect(() => {
     if (open) {
       setTitle(note?.title ?? "");

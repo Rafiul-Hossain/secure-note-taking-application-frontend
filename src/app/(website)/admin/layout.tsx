@@ -1,8 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
-
-// Server-side admin guard (the middleware already blocks non-admins too)
 export default async function AdminLayout({
   children,
 }: {

@@ -13,7 +13,4 @@ export default withAuth(
     pages: { signIn: "/signin" },
   }
 );
-
-// "/" (my notes) and everything under /admin need a login.
-// /signin, /signup and /posts/[userId] stay public.
 export const config = { matcher: ["/", "/admin/:path*"] };

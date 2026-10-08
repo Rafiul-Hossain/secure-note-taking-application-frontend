@@ -22,8 +22,6 @@ export default function NotesPage() {
 
   const notes = data?.data ?? [];
   const meta = data?.meta;
-
-  // if the last note on a page was deleted, step back one page
   useEffect(() => {
     if (meta && page > 1 && page > meta.totalPages) {
       setPage(meta.totalPages || 1);

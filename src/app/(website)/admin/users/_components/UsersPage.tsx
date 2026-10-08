@@ -34,8 +34,6 @@ export default function UsersPage() {
 
   const users = data?.data ?? [];
   const meta = data?.meta;
-
-  // if the last user on a page was removed, step back one page
   useEffect(() => {
     if (meta && page > 1 && page > meta.totalPages) {
       setPage(meta.totalPages || 1);

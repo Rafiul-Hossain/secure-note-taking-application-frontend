@@ -16,8 +16,6 @@ export type UserInput = {
   role: "user" | "admin";
   interests: string[];
 };
-
-// GET /users?page=&limit=  (admin, paginated)
 export function useUsers(page: number, limit: number) {
   return useQuery({
     queryKey: ["users", page, limit],
@@ -25,8 +23,6 @@ export function useUsers(page: number, limit: number) {
     placeholderData: keepPreviousData,
   });
 }
-
-// Changing users also changes the interests grouping and the all-notes view
 const useRefreshAdminData = () => {
   const queryClient = useQueryClient();
   return () => {
@@ -35,8 +31,6 @@ const useRefreshAdminData = () => {
     queryClient.invalidateQueries({ queryKey: ["all-notes"] });
   };
 };
-
-// POST /users
 export function useCreateUser() {
   const refresh = useRefreshAdminData();
   return useMutation({
@@ -45,8 +39,6 @@ export function useCreateUser() {
     onSuccess: refresh,
   });
 }
-
-// PUT /users/:id
 export function useUpdateUser() {
   const refresh = useRefreshAdminData();
   return useMutation({
@@ -55,8 +47,6 @@ export function useUpdateUser() {
     onSuccess: refresh,
   });
 }
-
-// DELETE /users/:id
 export function useDeleteUser() {
   const refresh = useRefreshAdminData();
   return useMutation({

@@ -11,8 +11,6 @@ import { api } from "@/lib/api";
 import { Note } from "@/types/api";
 
 type NoteInput = { title: string; content: string };
-
-// GET /notes?page=&limit=  (own notes, paginated)
 export function useNotes(page: number, limit: number) {
   const { data: session } = useSession();
   const userId = session?.user?.id;
@@ -24,8 +22,6 @@ export function useNotes(page: number, limit: number) {
     placeholderData: keepPreviousData,
   });
 }
-
-// POST /notes
 export function useCreateNote() {
   const queryClient = useQueryClient();
   return useMutation({
@@ -34,8 +30,6 @@ export function useCreateNote() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["notes"] }),
   });
 }
-
-// PUT /notes/:id
 export function useUpdateNote() {
   const queryClient = useQueryClient();
   return useMutation({
@@ -44,8 +38,6 @@ export function useUpdateNote() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["notes"] }),
   });
 }
-
-// DELETE /notes/:id
 export function useDeleteNote() {
   const queryClient = useQueryClient();
   return useMutation({
